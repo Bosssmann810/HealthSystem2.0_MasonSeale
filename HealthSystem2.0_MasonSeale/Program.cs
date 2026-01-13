@@ -13,7 +13,7 @@ namespace HealthSystem2._0_MasonSeale
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Please eneter your name");
+            Console.WriteLine("Please enter your name");
             string name = Console.ReadLine();
             Player player = new Player(name, 100, 100);
             player.TakeDamage(50);
@@ -22,12 +22,12 @@ namespace HealthSystem2._0_MasonSeale
         }
         public class Player
         {
-            public Player(string name,int Maxhealth, int MaxSheild)
+            public Player(string name,int Maxhealth, int MaxShield)
             {
                 _name = name;
                 _health.Max = Maxhealth;
-                _sheild.Max = MaxSheild;
-                _sheild.Restore();
+                _shield.Max = MaxShield;
+                _shield.Restore();
                 _health.Restore();
             }
             string _name;
@@ -42,23 +42,23 @@ namespace HealthSystem2._0_MasonSeale
             {
                 return _health.CurrentHP;
             }
-            Health _sheild = new Health();
+            Health _shield = new Health();
             public int GetSheild()
             {
-                return _sheild.CurrentHP;
+                return _shield.CurrentHP;
             }
             
             public void TakeDamage(int amount)
             {
-                int PotentialExsess = _sheild.TakeDamage2(amount);
-                if (_sheild.CurrentHP <= 0)
+                int PotentialExsess = _shield.TakeDamage2(amount);
+                if (_shield.CurrentHP <= 0)
                 {
-                    _sheild.CurrentHP = 0;
+                    _shield.CurrentHP = 0;
                     _health.TakeDamage2(PotentialExsess * -1);
                 }
                 else
                 {
-                    _sheild.CurrentHP = PotentialExsess;
+                    _shield.CurrentHP = PotentialExsess;
                 }
 
             }
