@@ -11,14 +11,55 @@ namespace HealthSystem2._0_MasonSeale
 {
     internal class Program
     {
+        static Random rng = new Random();
         static void Main(string[] args)
         {
             Console.WriteLine("Please enter your name");
             string name = Console.ReadLine();
             Player player = new Player(name, 100, 100);
-            player.TakeDamage(50);
-            Console.WriteLine(player.GetHealth());
-            Console.ReadKey();
+
+            Console.WriteLine($"Name: {player.Name} Shield: {player.GetShield()} Health: {player.GetHealth()} Status: {player.GetStatusString()}");
+            Console.ReadKey(true);
+            while (true)
+            {
+                
+                Console.WriteLine("D takes damage H heals, please press a key");
+                ConsoleKeyInfo holder;
+                while (true)
+                {
+                    holder = Console.ReadKey(true);
+  
+                    if (holder.Key == ConsoleKey.H)
+                    {
+                        Console.Clear();
+                        player.Heal(rng.Next(1, 21));
+                        break;
+                    }
+                    if (holder.Key == ConsoleKey.D)
+                    {
+                        Console.Clear();
+                        player.TakeDamage(rng.Next(1, 21));
+                        break;
+
+                    }
+                    else
+                    {
+                    
+                        Console.WriteLine("D takes damage H heals, please press a key");
+                    }
+                }
+                if(player.GetHealth() <= 0)
+                {
+                    player.dead();
+                    Console.WriteLine($"Name: {player.Name} Shield: {player.GetShield()} Health: {player.GetHealth()} Status: {player.GetStatusString()}");
+                    Console.WriteLine("You Died, Press any key to close");
+                    Console.ReadKey();
+                    break;
+                }
+                Console.WriteLine($"Name: {player.Name} Shield: {player.GetShield()} Health: {player.GetHealth()} Status: {player.GetStatusString()}");
+
+            }
+ 
         }
         public class Player
         {
@@ -31,10 +72,47 @@ namespace HealthSystem2._0_MasonSeale
                 _health.Restore();
             }
             string _name;
+            public void Heal(int amount)
+            {
+                _health.Heal(amount);
+            }
             public string Name
             {
                 get { return _name; }
                 set { _name = value; }
+            }
+            public void dead()
+            {
+                _health.CurrentHP = 0;
+            }
+            public string GetStatusString()
+            {
+                if(_health.CurrentHP > 90)
+                {
+                    return "allgood";
+                }
+                if (_health.CurrentHP > 70)
+                {
+                    return "a little hurt";
+                }
+                if (_health.CurrentHP > 40)
+                {
+                    return "Hurting";
+                }
+                if (_health.CurrentHP > 10)
+                {
+                    return "Really Hurting";
+                }
+                if(_health.CurrentHP > 0)
+                {
+                    return "Critical";
+                }
+                else
+                {
+                    _health.CurrentHP = 0;
+                    return "dead";
+
+                }
             }
 
             Health _health = new Health();
@@ -43,8 +121,9 @@ namespace HealthSystem2._0_MasonSeale
                 return _health.CurrentHP;
             }
             Health _shield = new Health();
-            public int GetSheild()
+            public int GetShield()
             {
+
                 return _shield.CurrentHP;
             }
             
@@ -91,7 +170,6 @@ namespace HealthSystem2._0_MasonSeale
                 else if(_currenthp - amount <= 0)
                 {
                     int exsess = _currenthp - amount;
-                    Console.WriteLine("went over");
                     _currenthp = exsess;
                     return exsess;
                 }
@@ -101,6 +179,25 @@ namespace HealthSystem2._0_MasonSeale
                     return _currenthp;
                 }
             }
+            public int Heal(int amount)
+            {
+                if(amount <= 0)
+                {
+                    return _currenthp;
+                }
+                if (amount + _currenthp > _maxhp)
+                {
+                    _currenthp = _maxhp;
+                    return _currenthp;
+                }
+                else
+                {
+                    _currenthp += amount;
+                    return _currenthp;
+                }
+
+            }
+
 
         }
     }

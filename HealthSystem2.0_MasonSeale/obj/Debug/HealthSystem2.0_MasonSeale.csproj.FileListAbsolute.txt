@@ -6,3 +6,11 @@ C:\mason unity\HealthSystem2.0_MasonSeale\HealthSystem2.0_MasonSeale\obj\Debug\H
 C:\mason unity\HealthSystem2.0_MasonSeale\HealthSystem2.0_MasonSeale\obj\Debug\HealthSystem2.0_MasonSeale.exe
 C:\mason unity\HealthSystem2.0_MasonSeale\HealthSystem2.0_MasonSeale\obj\Debug\HealthSystem2.0_MasonSeale.pdb
 C:\mason unity\HealthSystem2.0_MasonSeale\HealthSystem2.0_MasonSeale\obj\Debug\HealthSystem2.0_MasonSeale.exe.config
+C:\mason's projects\HealthSystem2.0_MasonSeale\HealthSystem2.0_MasonSeale\bin\Debug\HealthSystem2.0_MasonSeale.exe.config
+C:\mason's projects\HealthSystem2.0_MasonSeale\HealthSystem2.0_MasonSeale\bin\Debug\HealthSystem2.0_MasonSeale.exe
+C:\mason's projects\HealthSystem2.0_MasonSeale\HealthSystem2.0_MasonSeale\bin\Debug\HealthSystem2.0_MasonSeale.pdb
+C:\mason's projects\HealthSystem2.0_MasonSeale\HealthSystem2.0_MasonSeale\obj\Debug\HealthSystem2.0_MasonSeale.csproj.AssemblyReference.cache
+C:\mason's projects\HealthSystem2.0_MasonSeale\HealthSystem2.0_MasonSeale\obj\Debug\HealthSystem2.0_MasonSeale.exe.config
+C:\mason's projects\HealthSystem2.0_MasonSeale\HealthSystem2.0_MasonSeale\obj\Debug\HealthSystem2.0_MasonSeale.csproj.CoreCompileInputs.cache
+C:\mason's projects\HealthSystem2.0_MasonSeale\HealthSystem2.0_MasonSeale\obj\Debug\HealthSystem2.0_MasonSeale.exe
+C:\mason's projects\HealthSystem2.0_MasonSeale\HealthSystem2.0_MasonSeale\obj\Debug\HealthSystem2.0_MasonSeale.pdb
