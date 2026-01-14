@@ -16,7 +16,7 @@ namespace HealthSystem2._0_MasonSeale
         {
             Console.WriteLine("Please enter your name");
             string name = Console.ReadLine();
-            Player player = new Player(name, 100, 100);
+            Player player = new Player(name: name, maxHealth: 100, maxShield: 100);
 
             Console.WriteLine($"Name: {player.Name} Shield: {player.GetShield()} Health: {player.GetHealth()} Status: {player.GetStatusString()}");
             Console.ReadKey(true);
@@ -50,7 +50,7 @@ namespace HealthSystem2._0_MasonSeale
                 }
                 if(player.GetHealth() <= 0)
                 {
-                    player.dead();
+                    player.Dead();
                     Console.WriteLine($"Name: {player.Name} Shield: {player.GetShield()} Health: {player.GetHealth()} Status: {player.GetStatusString()}");
                     Console.WriteLine("You Died, Press any key to close");
                     Console.ReadKey();
@@ -66,10 +66,8 @@ namespace HealthSystem2._0_MasonSeale
             public Player(string name,int maxHealth, int maxShield)
             {
                 _name = name;
-                _health.Max = maxHealth;
-                _shield.Max = maxShield;
-                _shield.Restore();
-                _health.Restore();
+                _health = new Health(maxHealth);
+                _shield = new Health(maxHealth);
             }
             string _name;
             public void Heal(int amount)
@@ -79,11 +77,11 @@ namespace HealthSystem2._0_MasonSeale
             public string Name
             {
                 get { return _name; }
-                set { _name = value; }
+                private set { _name = value; }
             }
-            public void dead()
+            public void Dead()
             {
-                _health.CurrentHP = 0;
+                _health.HpChanger(0);
             }
             public string GetStatusString()
             {
@@ -109,93 +107,119 @@ namespace HealthSystem2._0_MasonSeale
                 }
                 else
                 {
-                    _health.CurrentHP = 0;
+                    _health.HpChanger(0);
                     return "Dead";
 
                 }
             }
 
-            Health _health = new Health();
+            Health _health;
             public int GetHealth()
             {
                 return _health.CurrentHP;
             }
-            Health _shield = new Health();
+            Health _shield;
             public int GetShield()
             {
 
                 return _shield.CurrentHP;
             }
-            
+            //takes an amount of damage
             public void TakeDamage(int amount)
             {
-                int PotentialExsess = _shield.TakeDamagePart2(amount);
+                //this is for later
+                int potentialExsess = _shield.TakeDamagePart2(amount);
+                //if the current hp hits or goes below 0
                 if (_shield.CurrentHP <= 0)
                 {
-                    _shield.CurrentHP = 0;
-                    _health.TakeDamagePart2(PotentialExsess * -1);
+                    //set shield to 0
+                    _shield.HpChanger(0);
+                    //and preform the takedamage() to _health
+                    _health.TakeDamagePart2(potentialExsess * -1);
                 }
                 else
                 {
-                    _shield.CurrentHP = PotentialExsess;
+                    //otherwise just take damage to shield
+                    _shield.HpChanger(potentialExsess);
                 }
 
             }
         }
         public class Health
         {
-            int _maxhp;
-            public int Max
+            int _maxHp;
+            //get and set for _maxHp
+            public int MaxHP
             {
-                get { return _maxhp; }
-                set { _maxhp = value; }
+                get { return _maxHp; }
+
+                private set { _maxHp = value; }
             }
-            int _currenthp;
+            int _currentHp;
+            //get and set for _currenthp
             public int CurrentHP
             {
-                get { return _currenthp; }
-                set { _currenthp = value; }
+                get { return _currentHp; }
+                private set { _currentHp = value; }
             }
+            //sets _currenthp to _maxhp
             public void Restore()
             {
-                _currenthp = _maxhp;
+                _currentHp = _maxHp;
             }
+            //takes an amount, if its not negative, subtract that amount from current hp
             public int TakeDamagePart2(int amount)
             {
                 if (amount < 0)
                 {
                     Console.WriteLine("Negative damage is not allowed");
-                    return _currenthp;
+                    return _currentHp;
                 }
-                else if(_currenthp - amount <= 0)
+                //if current gos past 0, return the leftover amount
+                else if(_currentHp - amount <= 0)
                 {
-                    int exsess = _currenthp - amount;
-                    _currenthp = exsess;
+                    int exsess = _currentHp - amount;
+                    _currentHp = exsess;
                     return exsess;
                 }
+                //otherwise just return the current hp
                 else
                 {
-                    _currenthp -= amount;
-                    return _currenthp;
+                    _currentHp -= amount;
+                    return _currentHp;
                 }
             }
+            //takes an amount, if the amount isn't negative adds that to the health, only up to the max.
             public int Heal(int amount)
             {
                 if(amount <= 0)
                 {
-                    return _currenthp;
+                    Console.WriteLine("Cannot heal for negative numbers");
+                    return _currentHp;
+                    
                 }
-                if (amount + _currenthp > _maxhp)
+                if (amount + _currentHp > _maxHp)
                 {
-                    _currenthp = _maxhp;
-                    return _currenthp;
+                    _currentHp = _maxHp;
+                    return _currentHp;
                 }
                 else
                 {
-                    _currenthp += amount;
-                    return _currenthp;
+                    _currentHp += amount;
+                    return _currentHp;
                 }
 
+            }
+            //this lets you change CurrentHP outside of the class
+            public void HpChanger(int amount)
+            {
+                CurrentHP = amount;
+            }
+            //health constructor
+            public Health(int maxHealth)
+            {
+                CurrentHP = maxHealth;
+                MaxHP = maxHealth;
             }
 
 
