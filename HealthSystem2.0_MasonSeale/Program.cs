@@ -63,11 +63,11 @@ namespace HealthSystem2._0_MasonSeale
         }
         public class Player
         {
-            public Player(string name,int Maxhealth, int MaxShield)
+            public Player(string name,int maxHealth, int maxShield)
             {
                 _name = name;
-                _health.Max = Maxhealth;
-                _shield.Max = MaxShield;
+                _health.Max = maxHealth;
+                _shield.Max = maxShield;
                 _shield.Restore();
                 _health.Restore();
             }
@@ -89,11 +89,11 @@ namespace HealthSystem2._0_MasonSeale
             {
                 if(_health.CurrentHP > 90)
                 {
-                    return "allgood";
+                    return "All good";
                 }
                 if (_health.CurrentHP > 70)
                 {
-                    return "a little hurt";
+                    return "A little hurt";
                 }
                 if (_health.CurrentHP > 40)
                 {
@@ -110,7 +110,7 @@ namespace HealthSystem2._0_MasonSeale
                 else
                 {
                     _health.CurrentHP = 0;
-                    return "dead";
+                    return "Dead";
 
                 }
             }
@@ -129,11 +129,11 @@ namespace HealthSystem2._0_MasonSeale
             
             public void TakeDamage(int amount)
             {
-                int PotentialExsess = _shield.TakeDamage2(amount);
+                int PotentialExsess = _shield.TakeDamagePart2(amount);
                 if (_shield.CurrentHP <= 0)
                 {
                     _shield.CurrentHP = 0;
-                    _health.TakeDamage2(PotentialExsess * -1);
+                    _health.TakeDamagePart2(PotentialExsess * -1);
                 }
                 else
                 {
@@ -160,7 +160,7 @@ namespace HealthSystem2._0_MasonSeale
             {
                 _currenthp = _maxhp;
             }
-            public int TakeDamage2(int amount)
+            public int TakeDamagePart2(int amount)
             {
                 if (amount < 0)
                 {
