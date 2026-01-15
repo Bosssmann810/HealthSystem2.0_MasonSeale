@@ -1,0 +1,7 @@
+C:\Users\seale\Desktop\test\HealthSystem2.0_MasonSeale\HealthSystem2.0_MasonSeale\bin\Release\HealthSystem2.0_MasonSeale.exe.config
+C:\Users\seale\Desktop\test\HealthSystem2.0_MasonSeale\HealthSystem2.0_MasonSeale\bin\Release\HealthSystem2.0_MasonSeale.exe
+C:\Users\seale\Desktop\test\HealthSystem2.0_MasonSeale\HealthSystem2.0_MasonSeale\bin\Release\HealthSystem2.0_MasonSeale.pdb
+C:\Users\seale\Desktop\test\HealthSystem2.0_MasonSeale\HealthSystem2.0_MasonSeale\obj\Release\HealthSystem2.0_MasonSeale.csproj.AssemblyReference.cache
+C:\Users\seale\Desktop\test\HealthSystem2.0_MasonSeale\HealthSystem2.0_MasonSeale\obj\Release\HealthSystem2.0_MasonSeale.csproj.CoreCompileInputs.cache
+C:\Users\seale\Desktop\test\HealthSystem2.0_MasonSeale\HealthSystem2.0_MasonSeale\obj\Release\HealthSystem2.0_MasonSeale.exe
+C:\Users\seale\Desktop\test\HealthSystem2.0_MasonSeale\HealthSystem2.0_MasonSeale\obj\Release\HealthSystem2.0_MasonSeale.pdb
